@@ -31,6 +31,7 @@ public class IntroScene : MonoBehaviour
         public static List<string> ItemsActive = new List<string>(); // list of active items
         public static List<string> RoomsActive = new List<string>(); // list of active rooms
         public static Vector3 NinejPos = new Vector3(0f,0f,0f);  // Ninej position in the room
+        public static List<string> GameFinished = new List<string>(); // list of finished games
     } 
 
     CurrentState currentState = new CurrentState(); // initiate current state
@@ -73,6 +74,9 @@ public class IntroScene : MonoBehaviour
         CurrentState.RoomsActive.Add("Kitchen");     // 2
         //CurrentState.RoomsActive.Add("Porch");     // 4
         CurrentState.RoomsActive.Add("Cafe");        // 5
+
+        // No finished game
+
 
     }
 

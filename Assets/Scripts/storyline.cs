@@ -103,7 +103,7 @@ public class storyline : MonoBehaviour
 
     public void checkYourSources(string it1, string instr1, params string[] it2)
     {
-        Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
+        //Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
         //string message;
 
         if (instr1 == "take")
@@ -114,7 +114,8 @@ public class storyline : MonoBehaviour
                 if (message == "takenow") // check if you are allowed to take the item
                 {
                     IntroScene.Inventory.inv.Add(it1); // add to inventory
-                    infoText.text = "You picked "+it1;
+                    //infoText.text = "You picked "+it1;
+                    write("You picked "+it1);
 
                     // remove item from game
                     GameObject.Find(it1).SetActive(false);
@@ -131,19 +132,22 @@ public class storyline : MonoBehaviour
                 }
                  else
                 {
-                    infoText.text = message;
+                    //infoText.text = message;
+                    write(message);
                 }
             }
             catch  // item not in dictionary
             {
-                infoText.text=  "Item " + it1 + " not in dictionary."; 
+                //infoText.text=  "Item " + it1 + " not in dictionary."; 
+                write("Item " + it1 + " not in dictionary.");
             }
         }
         else if (instr1 == "give")
         {
             if (it2.Length != 1)  // check if the number of item to give is right
             {
-                infoText.text = "Too many/few inputs?";
+                //infoText.text = "Too many/few inputs?";
+                write("Too many/few inputs?");
             }
             else
             {
@@ -180,14 +184,16 @@ public class storyline : MonoBehaviour
                 catch // if a given combination doesn't exist throw a message only
                 {
                     //return "dooley fooley";
-                    infoText.text = "You can't give " + itToGive + " to " + it1 + ".";
+                    //infoText.text = "You can't give " + itToGive + " to " + it1 + ".";
+                    write("You can't give " + itToGive + " to " + it1 + ".");
                 }
                 
             }
         }
         else
         {
-            infoText.text = "doodley doodley day";
+            //infoText.text = "doodley doodley day";
+            write("doodley doodley day");
         }
 
     }
@@ -216,26 +222,29 @@ public class storyline : MonoBehaviour
 
     public void heart_paperclip(string[] args)
     { //args = {ITEM_TO_BE_GIVEN}
-        Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
-        infoText.text = "Good riddance, " + args[0] + "!";
-        
+        //Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
+        //infoText.text = "Good riddance, " + args[0] + "!";
+        write("Good riddance, " + args[0] + "!");
+
         // remove item from iInvokeMethodnventory
         IntroScene.Inventory.inv.Remove(args[0]);
     }
 
     public void paperclip_heart(string[] args)
     { //args = {ITEM_TO_BE_GIVEN}
-        Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
-        infoText.text = "Good riddance, " + args[0] + "!";
-        
+        //Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
+        //infoText.text = "Good riddance, " + args[0] + "!";
+        write("Good riddance, " + args[0] + "!");
+
         // remove item from iInvokeMethodnventory
         IntroScene.Inventory.inv.Remove(args[0]);
     }
 
     public void cat_origami(string[] args)
     { //args = {ITEM_TO_BE_GIVEN}
-        Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
-        infoText.text = "Good riddance, " + args[0] + "!";
+        //Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
+        //infoText.text = "Good riddance, " + args[0] + "!";
+        write("Good riddance, " + args[0] + "!");
         
         // remove item from iInvokeMethodnventory
         IntroScene.Inventory.inv.Remove(args[0]);
@@ -244,14 +253,19 @@ public class storyline : MonoBehaviour
     public void mailbox_mailboxKey(string[] args)
     // here will be the tamagochi minigame
     { //args = {ITEM_TO_BE_GIVEN}
-        Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
-        infoText.text = "Good riddance, " + args[0] + "!";
+        //Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
+        //infoText.text = "Good riddance, " + args[0] + "!";
+        write("Good riddance, " + args[0] + "!");   
         
         // remove item from iInvokeMethodnventory
         IntroScene.Inventory.inv.Remove(args[0]);
     }
 
-    
+    private void write(string whattowrite)
+    {
+        Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
+        infoText.text = whattowrite;
+    }
 
     private void talk(string person)
     {
