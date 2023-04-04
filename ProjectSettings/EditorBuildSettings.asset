@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TalkBarista.unity
     guid: 73714202d6c613b388c27353a9d6afb9
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Tamagotchi/Display.unity
+    guid: 138f8b1e3d237e842832722683b2ea3d
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Tamagotchi/Minigame.unity
+    guid: d107fb6150db2db43af6242defa401aa
   m_configObjects: {}
