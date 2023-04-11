@@ -31,7 +31,8 @@ public class IntroScene : MonoBehaviour
         public static List<string> ItemsActive = new List<string>(); // list of active items
         public static List<string> RoomsActive = new List<string>(); // list of active rooms
         public static Vector3 NinejPos = new Vector3(0f,0f,0f);  // Ninej position in the room
-        public static List<string> GameFinished = new List<string>(); // list of finished games
+        //public static List<string> GameFinished = new List<string>(); // list of finished games
+        public static Dictionary<string, bool> GameBools = new Dictionary<string, bool>(); // dict of games and whether they are started/finished
     } 
 
     CurrentState currentState = new CurrentState(); // initiate current state
@@ -66,6 +67,7 @@ public class IntroScene : MonoBehaviour
         CurrentState.ItemsActive.Add("mailbox");    // 4 = porch
         //CurrentState.ItemsActive.Add("mailboxKey");  // ?
         CurrentState.ItemsActive.Add("barista");    // 5 cafe
+        //CurrentState.ItemsActive.Add("tamagotchi");    // 4
         
 
         ////////////////////////////
@@ -76,7 +78,15 @@ public class IntroScene : MonoBehaviour
         CurrentState.RoomsActive.Add("Cafe");        // 5
 
         // No finished game
+        // CurrentState.GameFinished.Add("Tamagotchi"); // mark as finished in the beginning (we don't have the item yet anyway)
 
+        // Game bools
+        //CurrentState.GameBools.Add("tangramDone",false);  // tangram not done
+        //CurrentState.GameBools.Add("tamagotchiStarted",false);  // tamagotchi not started
+        //CurrentState.GameBools.Add("tamagotchiDone",false);  // tamagotchi not done
+        CurrentState.GameBools["tangramDone"] = false;  // tangram not done
+        CurrentState.GameBools["tamagotchiStarted"] = false;  // tamagotchi not started
+        CurrentState.GameBools["tamagotchiDone"] = false;  // tamagotchi not done
 
     }
 
@@ -86,6 +96,16 @@ public class IntroScene : MonoBehaviour
         // StartCoroutine(Tutorial(introText));  // start tutorial coroutine
         
 
+    }
+
+    public static string Help() // what to show in case user presses H
+    {
+        return("Press G for GIVE, T for TAKE/TALK (both next to an object), I for INVENTORY, H for HELP, R for a random quote.");
+    }
+
+    public static string randomQuote() // random fun fact in case of despair
+    {
+        return("This is the way.");
     }
 
     //IEnumerator Tutorial(Text introText)

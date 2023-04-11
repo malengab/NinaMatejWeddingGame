@@ -19,6 +19,6 @@ public class Minigame : MonoBehaviour
 
     public void Back()  // press to go back to display scene
     {
-        SceneManager.LoadScene("Display");
+        SceneManager.LoadScene("Tamagotchi");
     }
 }

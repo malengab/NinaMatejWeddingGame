@@ -57,6 +57,7 @@ public class storyline : MonoBehaviour
         items.Add("mailbox");   // 4 = porch
         items.Add("barista");   // 5 = cafe
         items.Add("mailboxKey");  // ?
+        items.Add("tamagotchi"); // 4
 
         // dictionary of interactions with items (TAKE)
         // format (ITEM, INSTRUCTION)
@@ -259,14 +260,28 @@ public class storyline : MonoBehaviour
         
         // remove item from iInvokeMethodnventory
         IntroScene.Inventory.inv.Remove(args[0]);
+
+        // switch to tamagotchi scene
+        //SceneManager.LoadScene("Tamagotchi");
+        
+        // add tamagotchi item to inventory
+        IntroScene.Inventory.inv.Add("tamagotchi");
+        write("Inside of the mailbox, there is a letter from Japan. You open it and out falls a cat tamagotchi.");
+        // start tamagotchi
+        IntroScene.CurrentState.GameBools["tamagotchiStarted"] = true;
+        // No more letters in the mailbox
+        takeItem["mailbox"] = "Only bills. Ignore.";
+
     }
 
-    private void write(string whattowrite)
+    // write a message to infotext
+    private void write(string whattowrite) 
     {
         Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
         infoText.text = whattowrite;
     }
 
+    // talk to a person
     private void talk(string person)
     {
         if (person == "barista")

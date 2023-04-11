@@ -56,7 +56,8 @@ public class WinScript : MonoBehaviour
 
             // at that point, tangram is done
             tangramDone = true;
-            IntroScene.CurrentState.GameFinished.Add("tangram");
+            //IntroScene.CurrentState.GameFinished.Add("tangram");
+            IntroScene.CurrentState.GameBools["tangramDone"] = true;
 
             // failed attempts to show button only upon completion
             /*
