@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //text
+using System.Collections.Generic; //random
+using System;   //random
 
 public class IntroScene : MonoBehaviour
 {
@@ -100,12 +102,32 @@ public class IntroScene : MonoBehaviour
 
     public static string Help() // what to show in case user presses H
     {
-        return("Press G for GIVE, T for TAKE/TALK (both next to an object), I for INVENTORY, H for HELP, R for a random quote.");
+        return("Press G for GIVE, T for TAKE/TALK (both near an object), I for INVENTORY, H for HELP, R for a random quote.");
     }
 
-    public static string randomQuote() // random fun fact in case of despair
+    public static string RandomQuote() // random fun fact in case of despair
     {
-        return("This is the way.");
+        List<string> quotes = new List<string>(){"This is the way",
+        "No to koukám jak Vrána!"}; //add quotes manually
+
+        System.Random rand = new System.Random(); // 
+        int index = rand.Next(quotes.Count); // Generate a random index within the range of the list
+
+        string randomString = quotes[index];
+        //Console.WriteLine($"Random string: {randomString}");
+
+        return(randomString);
+    }
+
+    public static string ShowInv()  // return inventory content as one string
+    {
+        // list itenery items
+        string itemstring = "";
+        for (int i = 0; i < IntroScene.Inventory.inv.Count; i++) 
+        {
+            itemstring += "(" + i.ToString() + ") " + IntroScene.Inventory.inv[i] + " ";
+        }
+        return("Inventory:" + "\n" +  itemstring);
     }
 
     //IEnumerator Tutorial(Text introText)

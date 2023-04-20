@@ -41,13 +41,7 @@ public class mainPorch : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I)) // press I key for inventory
         {
-            // list itenery items
-            string itemstring = "";
-            for (int i = 0; i < IntroScene.Inventory.inv.Count; i++) 
-            {
-                itemstring += "(" + i.ToString() + ") " + IntroScene.Inventory.inv[i] + " ";
-            }
-            infoText.text = "Inventory:" + "\n" +  itemstring;
+            infoText.text = IntroScene.ShowInv();
         }
         if (Input.GetKeyDown(KeyCode.Backspace))  // wipe the infotext
         {
@@ -55,7 +49,7 @@ public class mainPorch : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))  // random quote
         {
-            infoText.text = IntroScene.randomQuote();
+            infoText.text = IntroScene.RandomQuote();
         } 
     }
 }
