@@ -41,6 +41,7 @@ public class pressKey : MonoBehaviour
             //string message = GameObject.Find("Scripts").GetComponent<storyline>().checkYourSources(str,"take");
             //print(message);
             GameObject.Find("Scripts").GetComponent<storyline>().checkYourSources(str,"take");
+            //storyline.checkYourSources(str,"take"); // should work in theory ut needs fixing
 
             /* move to script storyline
             // if the message is TAKE

@@ -51,5 +51,9 @@ public class mainPorch : MonoBehaviour
         {
             infoText.text = IntroScene.RandomQuote();
         } 
+        if (Input.GetKeyDown(KeyCode.E))  // examine object from inventory
+        {
+            infoText.text = IntroScene.Examine();
+        }  
     }
 }

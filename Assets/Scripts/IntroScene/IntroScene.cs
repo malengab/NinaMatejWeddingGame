@@ -130,6 +130,11 @@ public class IntroScene : MonoBehaviour
         return("Inventory:" + "\n" +  itemstring);
     }
 
+    public static string Examine()  // examine an object
+    {
+        return("What do you want to examine? "+ ShowInv()); //ask what to examine from inventory
+    }
+
     //IEnumerator Tutorial(Text introText)
     IEnumerator Tutorial()
     {
