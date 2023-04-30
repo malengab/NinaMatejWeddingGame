@@ -8,6 +8,7 @@ public class mainPorch : MonoBehaviour
 
     private bool debug; // debugging mode bool
     private Text infoText;  // infotext field
+    private Example example;  // callin instance of example script
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +54,32 @@ public class mainPorch : MonoBehaviour
         } 
         if (Input.GetKeyDown(KeyCode.E))  // examine object from inventory
         {
-            infoText.text = IntroScene.Examine();
+            //infoText.text = IntroScene.Examine();
+
+            //infoText.text = "What do you want to examine? "+ IntroScene.ShowInv(); //ask what to examine from inventory
+            //IntroScene.Examine();
+
+            // creates warning but works
+            //Example example = new Example();//GetComponent<Example>(); // get an instance of Example, otherwise you're trying to access a non-static member (field, method, or property) of a class from a static method or a static field.
+            //Example example = GetComponent<Example>();
+
+
+            // ChatGPT: f the Example class inherits from MonoBehaviour but is not attached to a GameObject, you can't create an instance of the Example class using the new keyword as you would for a normal class. Instead, you can use the AddComponent method to add the Example component to a GameObject at runtime and then access its fields and methods.
+            GameObject exampleObject = new GameObject("ExampleObject");
+            example = exampleObject.AddComponent<Example>();             
+            //example.wrt(); 
+
+
+            //GameObject.Find("Scripts").GetComponent<Example>().wrt();
+
+            // go directly to storyline, no introdcene, it is attached anyway // update i don't even need to attach it
+            // storyline.exam("this");
+
         }  
     }
+     // when done using the Example component, Destroy on the GameObject to remove it from the scene and free up memory
+        private void OnDestroy() 
+        {
+            Destroy(example.gameObject);
+        }
 }

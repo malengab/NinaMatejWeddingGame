@@ -102,13 +102,14 @@ public class IntroScene : MonoBehaviour
 
     public static string Help() // what to show in case user presses H
     {
-        return("Press G for GIVE, T for TAKE/TALK (both near an object), I for INVENTORY, H for HELP, R for a random quote.");
+        return("Press G for GIVE, T for TAKE/TALK (both near an object), I for INVENTORY, E for EXAMINE, H for HELP, R for a random quote.");
     }
 
     public static string RandomQuote() // random fun fact in case of despair
     {
-        List<string> quotes = new List<string>(){"This is the way",
-        "No to koukám jak Vrána!"}; //add quotes manually
+        List<string> quotes = new List<string>(){"This is the way.",
+        "No to koukám jak Vrána!",
+        "That's what she said."}; //add quotes manually
 
         System.Random rand = new System.Random(); // 
         int index = rand.Next(quotes.Count); // Generate a random index within the range of the list
@@ -130,9 +131,29 @@ public class IntroScene : MonoBehaviour
         return("Inventory:" + "\n" +  itemstring);
     }
 
-    public static string Examine()  // examine an object
+    public static void Examine()  // examine an object
     {
-        return("What do you want to examine? "+ ShowInv()); //ask what to examine from inventory
+        //return("What do you want to examine? "+ ShowInv()); //ask what to examine from inventory
+        
+        Text introText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>();
+        introText.text = "What do you want to examine? "+ ShowInv(); //ask what to examine from inventory
+        
+        //StartCoroutine(Tutorial()); static and coroutine do not work
+
+        //Console.WriteLine("Press A, B, or C to continue...");
+        //print("whazaa");
+        //Console.ReadLine();
+        print("That's what she said");
+
+        /*
+        ConsoleKeyInfo key;
+        do
+        {
+            key = Console.ReadKey(true);
+        } while (key.Key != ConsoleKey.A && key.Key != ConsoleKey.B && key.Key != ConsoleKey.C);
+
+        Console.WriteLine("You pressed " + key.Key);
+        */
     }
 
     //IEnumerator Tutorial(Text introText)
