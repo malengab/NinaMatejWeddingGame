@@ -11,10 +11,11 @@ public class storyline : MonoBehaviour
     //private GameObject Figs; // all items
     //private int ne;
 
-    // Given an item, what happens if we try to Take it?
+    // Given an item, what happens if we try to Take/give/examine it
     private Dictionary<string, string> takeItem = new Dictionary<string, string>();
-
     private Dictionary<string, string> giveItem = new Dictionary<string, string>();
+    private Dictionary<string, string> examineItem = new Dictionary<string, string>();
+
     // private Dictionary<(string,string), string> giveItem = new Dictionary<(string,string), string>();
     //static List<string> inv = new List<string>();  // inventory
     //private Text infoText;
@@ -199,9 +200,15 @@ public class storyline : MonoBehaviour
 
     }
 
+    // examine an object
     public static void exam(string st)
     {
-        print("Exterminating "+ st);
+        //print("Exterminating "+ st);
+        
+        Text infoText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>(); // ocate infostring
+        infoText.text = "Just a regular " + st + ".";
+
+        //write("Just a regular " + st + ".");
     }
 
 
