@@ -25,6 +25,9 @@ public class IntroScene : MonoBehaviour
     Inventory inventory = new Inventory(); // initiate inventory
     private Text introText;
     private GameObject Figs; 
+
+    private static Examine examine; // script EXAMINE to examine items, make it an instance
+    private static bool examineHasBeenCreated = false;  // if a new examine object has been created
     
     // current state is a static class that remembers what state is the player in
     // has list of active items, rooms
@@ -138,22 +141,22 @@ public class IntroScene : MonoBehaviour
         Text introText = GameObject.Find("Canvas/Infotext").GetComponent<UnityEngine.UI.Text>();
         introText.text = "What do you want to examine? "+ ShowInv(); //ask what to examine from inventory
         
-        //StartCoroutine(Tutorial()); static and coroutine do not work
+        //print("That's what she said");
 
-        //Console.WriteLine("Press A, B, or C to continue...");
-        //print("whazaa");
-        //Console.ReadLine();
-        print("That's what she said");
+        // ChatGPT: the Example class inherits from MonoBehaviour but is not attached to a GameObject, you can't create an instance of the Example class using the new keyword as you would for a normal class. Instead, you can use the AddComponent method to add the Example component to a GameObject at runtime and then access its fields and methods.
+        GameObject exObject = new GameObject("ExObject");
+        examine = exObject.AddComponent<Examine>();
+        examineHasBeenCreated = true; // object has been created  
 
-        /*
-        ConsoleKeyInfo key;
-        do
+    }
+    // destroy an examine game object (used temporarily to attach stcript)
+    // when done using the Examine component, Destroy on the GameObject to remove it from the scene and free up memory
+    private void OnDestroy() 
+    {
+        if (examineHasBeenCreated)// destroy the gameobject if it was created
         {
-            key = Console.ReadKey(true);
-        } while (key.Key != ConsoleKey.A && key.Key != ConsoleKey.B && key.Key != ConsoleKey.C);
-
-        Console.WriteLine("You pressed " + key.Key);
-        */
+            Destroy(examine.gameObject);
+        }
     }
 
     //IEnumerator Tutorial(Text introText)

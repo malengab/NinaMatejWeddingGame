@@ -8,12 +8,12 @@ using System; // error Exception
 public class storyline : MonoBehaviour
 {
     // list of items
-    private List<string> items = new List<string>();
+    private List<string> items = new List<string>();  // I am not really using it
     
     // Given an item, what happens if we try to Take/give/examine it
-    public static Dictionary<string, string> takeItem = new Dictionary<string, string>();
-    private Dictionary<string, string> giveItem = new Dictionary<string, string>();
-    private Dictionary<string, string> examineItem = new Dictionary<string, string>();
+    private static Dictionary<string, string> takeItem = new Dictionary<string, string>();
+    private Dictionary<string, string> giveItem = new Dictionary<string, string>(); // I am not really using it
+    //private static Dictionary<string, string> examineItem = new Dictionary<string, string>();
 
     // Start is called before the first frame update
     void Start()
@@ -48,10 +48,10 @@ public class storyline : MonoBehaviour
         takeItem.Add("mailbox","There are important-looking letters in the mailbox. Where did you leave your keys?");
         takeItem.Add("barista","talk"); // talk not take
 
-        // OBS I don't actually use the giveItem list, rather the method RECIPIENT_ITEM directly
+        // OBS I don't actually use the giveItem list, rather the function checkYourSources(RECIPIENT,ITEM) directly
         // dictionary of interactions with items (GIVE)
         // format (RECIPIENT,ITEM)
-        // There is a method RECIPIENT_ITEM() corresponding to each valid combination with further instructions
+        // There is a function checkYourSources(RECIPIENT,ITEM) corresponding to each valid combination with further instructions
         // All other combinations not listed here or missing RECIPIENT_ITEM method-> message "You can't give ITEM to RECIPIENT" and nothing happens.
         giveItem.Add("heart","paperclip");
         //giveItem.Add(("RIP","paperclip"),"Wow, why would you give a paperclip to the tombstone?");
@@ -113,7 +113,8 @@ public class storyline : MonoBehaviour
         // examine item
         else if (instr1 == "exam")
         {
-            write("Just a regular " + it1 + ".");
+            examineThat(it1);
+            //write("Just a regular " + it1 + ".");
         }
         else
         {
@@ -176,6 +177,24 @@ public class storyline : MonoBehaviour
         {
             // just write a message that a given combination doesn't exist 
             write("You can't give " + giveWhat + " to " + giveTo + ".");
+        }
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////// EXAMINE ITEMS /////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static void examineThat(string it)
+
+    {   // if we want to examine a special case
+        if (it == "tamagotchi")
+        {
+            // switch to tamagotchi scene
+            SceneManager.LoadScene("Tamagotchi");
+        }
+        else // any regular object gives a boring quote
+        {
+            write("Just a regular " + it + ".");
         }
     }
 

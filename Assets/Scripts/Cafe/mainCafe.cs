@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class debugCafe : MonoBehaviour
+public class mainCafe : MonoBehaviour
 {
 
     private bool debug;
