@@ -31,46 +31,14 @@ public class pressKey : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))  // pick up
         {
             // add item to inventory
-
-            /*
-            //print("Wow, you did press T...");
-            inv.Add(str);
-            //print(inv.Count.ToString()); # how many items in itinerary
-            */
-
-            //string message = GameObject.Find("Scripts").GetComponent<storyline>().checkYourSources(str,"take");
-            //print(message);
-            GameObject.Find("Scripts").GetComponent<storyline>().checkYourSources(str,"take");
-            //storyline.checkYourSources(str,"take"); // should work in theory ut needs fixing
-
-            /* move to script storyline
-            // if the message is TAKE
-            if (message == "take")
-            {
-                // add to inventory
-                // inv.Add(str);
-                // inventory.add(str); // works but I change it here instead
-                IntroScene.Inventory.inv.Add(str);
-                infoText.text = "You picked "+str;
-
-                // remove item from game
-                GameObject.Find(str).SetActive(false);
-                GameObject.Find(str+"Click").SetActive(false);
-            }
-            else
-            {
-                infoText.text = message;
-            }
-            */
-
+            storyline.checkYourSources(str,"take"); 
 
         }
 
         
         if (Input.GetKeyDown(KeyCode.G))   // give item / use it
         {
-
-            // StartCoroutine(Give(infoText,inv,str));
+            // try to use item
             StartCoroutine(Give(infoText,str));
         
         }
@@ -99,10 +67,6 @@ public class pressKey : MonoBehaviour
 
             
         infoText.text = "Which item do you want to use?" + "\n" +  itemstring;
-        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Alpha1));
-        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Alpha2));
-        //print("success");
-        //yield return null;
 
         // wait until a number is pressed
         // very ugly while loop
@@ -184,55 +148,10 @@ public class pressKey : MonoBehaviour
         }
         else
         {
-            /* moved directly to storyline script
-            infoText.text = "Good riddance, " + IntroScene.Inventory.inv[objectToRemove] + "!";
-
-            // check your story sources
-
-            string message = GameObject.Find("Scripts").GetComponent<storyline>().checkYourSources(str,"give",IntroScene.Inventory.inv[objectToRemove]);
-            //print(message);
-
-            // if the message is GIVE
-            if (message == "givenow")
-            {
-                // remove item from inventory
-                IntroScene.Inventory.inv.RemoveAt(objectToRemove);
-            }
-            else
-            {
-                infoText.text = message;
-            }
-            */
-            
-        GameObject.Find("Scripts").GetComponent<storyline>().checkYourSources(str,"give",IntroScene.Inventory.inv[objectToRemove]);
-
+            // check storyline
+            storyline.checkYourSources(str,"give",IntroScene.Inventory.inv[objectToRemove]);
         }
         yield return null;
-
-
-
-        /* infinite loop, but some nice functions inside
-        bool keypressed = false;
-        while (!keypressed)
-        {
-            for (int j = 0; j < inv.Count; j++)
-            //{
-                //string keystroke = "KeyCode.Alpha1";// + inv[j].ToString();
-            //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Alpha1));
-            {
-                //infoText.text = "Give " + inv[j].ToString() + " to him.";
-                if (Input.GetKeyDown(KeyCode.Alpha1))
-                {
-                    infoText.text = "Gimmegimmegimme";
-                    keypressed = true;
-                    yield return null;
-                }
-            }
-        //}
-        }
-        // if number pressed
-        //yield return null;        
-       */ 
     }
     
 }

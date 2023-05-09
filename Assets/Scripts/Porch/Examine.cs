@@ -115,7 +115,7 @@ public class Examine : MonoBehaviour
         }
         else
         { // if it does, go to storyline for further instructions
-            storyline.exam(IntroScene.Inventory.inv[objectToExamine]);
+            storyline.checkYourSources(IntroScene.Inventory.inv[objectToExamine],"exam");
         } 
     }
 }
